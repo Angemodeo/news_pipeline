@@ -1,9 +1,9 @@
-version: '3'
-services:
+docker-compose logs airflowservices:
   airflow:
     build: .
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=DebugExecutor
       - NEWS_API_KEY=${NEWS_API_KEY}
     volumes:
       - ./dags:/opt/airflow/dags
@@ -11,3 +11,4 @@ services:
       - ./data:/opt/airflow/data
     ports:
       - "8080:8080"
+    command: standalone
