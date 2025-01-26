@@ -1,0 +1,13 @@
+version: '3'
+services:
+  airflow:
+    build: .
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - NEWS_API_KEY=${NEWS_API_KEY}
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./plugins:/opt/airflow/plugins
+      - ./data:/opt/airflow/data
+    ports:
+      - "8080:8080"
